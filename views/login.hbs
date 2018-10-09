@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Iniciar sesion.</h1>
+        <p class="lead">Al iniciar podra actualizar los datos ingresados en nuestra base.</p>
+    </div>
+    </div>
+
+    <form method="POST" action="/login">
+
+        <div class="form-group">
+            <label for="idCuit">CUIT:</label>
+            <input type="text" name="cuit" class="form-control" id="idCuit" onblur="borrarGuion()" required >
+        </div>
+
+        <div class="form-group">
+            <label for="idPass">Contraseña:</label>
+            <div class="input-group"  >
+                <input type="password" name="pass" class="form-control" id="idPass">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" onclick="mostrarPass()" type="button">Mostrar</button>
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Cargar Proveedor" class="btn-block btn btn-dark ">
+
+    </form>
+</div>
+
+<script>
+
+function mostrarPass() {
+    switch(document.querySelector('#idPass').type) {
+        case "text":
+            document.querySelector('#idPass').type = "password"
+            break;
+        case "password":
+            document.querySelector('#idPass').type = "text"
+            break;
+    }
+}
+
+function borrarGuion() {
+    var nroCuit = document.querySelector('#idCuit').value.split("");
+    var cuitSinGuiones = [];
+
+    for (i = 0; i < nroCuit.length; i++) { 
+        if(nroCuit[i] != "-") {
+            cuitSinGuiones.push(nroCuit[i])
+        }
+    }
+    document.querySelector('#idCuit').value = cuitSinGuiones.join("");
+}
+</script>
