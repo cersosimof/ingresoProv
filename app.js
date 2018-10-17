@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'poronga',
+  secret: 'facundo',
   store: new MongoStore({
     // url: 'mongodb://localhost/proveedores',
     url: 'mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'',
