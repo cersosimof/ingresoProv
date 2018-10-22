@@ -3,7 +3,7 @@ var router = express.Router();
 var Proveedor = require('../models/modelProveedor').Proveedor;
 var md5 = require('md5');
 const nodemailer = require('nodemailer');
-// var DB = require('../db');
+var DB = require('../db');
 
 exports.mostrarForm = function(req, res, next) {
   res.render('alta');
@@ -36,8 +36,8 @@ nodemailer.createTestAccount((err, account) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-             user: mailUser,
-             pass: mailPass
+             user: DB.mailUser,
+             pass: DB.mailPass
          }
      });
 

@@ -7,10 +7,10 @@ var app = express();
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-// var DB = require('./db');
+var DB = require('./db');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://'+user+':'+pass+'@'+port+'/'+dbName+'', { useNewUrlParser : true });
+mongoose.connect('mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'', { useNewUrlParser : true });
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,7 +32,7 @@ app.use(session({
   secret: 'facundo',
   store: new MongoStore({
     // url: 'mongodb://localhost/proveedores',
-    url: 'mongodb://'+user+':'+pass+'@'+port+'/'+dbName+'',
+    url: 'mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'',
     ttl: 14 * 24 * 60 * 60,
     resave: false,
     saveUninitialized: true // = 14 days. Default

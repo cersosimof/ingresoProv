@@ -1,10 +1,10 @@
 var db = {
-    user: 'cherso88',
-    pass: 'espora1436',
-    port: 'ds213472.mlab.com:13472',
-    dbName: 'provcrud',
-    mailUser: 'cersosimof88@gmail.com',
-    mailPass: 'huevodepascua'
+    user: process.env.USER,
+    pass: process.env.PASS,
+    port: process.env.PORT, 
+    dbName: process.env.DBNAME,
+    mailUser: process.env.MAILUSER,
+    mailPass: process.env.MAILPASS 
 }
 module.exports = db;
 
