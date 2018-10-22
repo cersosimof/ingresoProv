@@ -6,11 +6,14 @@ var logger = require('morgan');
 var app = express();
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const ENV = require('dotenv')
+ENV.config();
 
-var DB = require('./db');
+// var DB = require('./db');
+console.log(process.env.DBNAME)
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'', { useNewUrlParser : true });
+mongoose.connect('mongodb://'+process.env.USERR+':'+process.env.PASS+'@'+process.env.PORT+'/'+process.env.DBNAME+'', { useNewUrlParser : true });
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,7 +35,7 @@ app.use(session({
   secret: 'facundo',
   store: new MongoStore({
     // url: 'mongodb://localhost/proveedores',
-    url: 'mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'',
+    url: 'mongodb://'+process.env.USERR+':'+process.env.PASS+'@'+process.env.PORT+'/'+process.env.DBNAME+'',
     ttl: 14 * 24 * 60 * 60,
     resave: false,
     saveUninitialized: true // = 14 days. Default
